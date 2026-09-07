@@ -182,3 +182,21 @@
   border: 1px solid var(--border);
   border-radius: var(--radius);
 }
+
+@utility weave-band {
+  height: 18px;
+  background-image:
+    linear-gradient(45deg, transparent 46%, var(--ink) 46%, var(--ink) 54%, transparent 54%),
+    linear-gradient(-45deg, transparent 46%, var(--ink) 46%, var(--ink) 54%, transparent 54%);
+  background-size: 18px 18px;
+  background-repeat: repeat-x;
+}
+
+@utility weave-band-brand {
+  height: 18px;
+  background-image:
+    linear-gradient(45deg, transparent 44%, var(--maroon) 44%, var(--maroon) 56%, transparent 56%),
+    linear-gradient(-45deg, transparent 44%, var(--mustard) 44%, var(--mustard) 56%, transparent 56%);
+  background-size: 18px 18px;
+  background-repeat: repeat-x;
+}
