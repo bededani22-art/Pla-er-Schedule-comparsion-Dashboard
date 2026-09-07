@@ -205,3 +205,57 @@
   background-size: 18px 18px;
   background-repeat: repeat-x;
 }
+
+/* ---- Heritage Weave patterns (Direction E) ---- */
+
+@utility weave-braid {
+  height: 14px;
+  background-image:
+    linear-gradient(135deg, var(--maroon) 25%, transparent 25%),
+    linear-gradient(225deg, var(--maroon) 25%, transparent 25%),
+    linear-gradient(315deg, var(--mustard) 25%, transparent 25%),
+    linear-gradient(45deg, var(--mustard) 25%, transparent 25%);
+  background-size: 14px 14px;
+  background-position: 0 0, 0 0, 7px 0, 7px 0;
+  background-repeat: repeat-x;
+}
+
+@utility weave-chevron {
+  height: 12px;
+  background-image:
+    linear-gradient(135deg, var(--ink) 25%, transparent 25%),
+    linear-gradient(225deg, var(--ink) 25%, transparent 25%);
+  background-size: 12px 12px;
+  background-position: 0 0, 0 6px;
+  background-repeat: repeat-x;
+}
+
+@utility weave-truss {
+  height: 16px;
+  background-image:
+    repeating-linear-gradient(45deg, var(--ink) 0 1.5px, transparent 1.5px 16px),
+    repeating-linear-gradient(-45deg, var(--maroon) 0 1.5px, transparent 1.5px 16px);
+  background-size: 16px 16px;
+  background-repeat: repeat-x;
+}
+
+@utility weave-tibeb {
+  height: 16px;
+  border-top: 2px solid var(--success);
+  border-bottom: 2px solid var(--success);
+  background-color: var(--panel);
+  background-image:
+    linear-gradient(45deg, var(--maroon) 25%, transparent 25%),
+    linear-gradient(-45deg, var(--maroon) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, var(--maroon) 75%),
+    linear-gradient(-45deg, transparent 75%, var(--maroon) 75%);
+  background-size: 20px 12px;
+  background-position: 0 2px, 0 2px, 0 2px, 0 2px;
+  background-repeat: repeat-x;
+}
+
+@utility table-scroll {
+  overflow-y: auto;
+  overflow-x: auto;
+  scrollbar-gutter: stable;
+}
