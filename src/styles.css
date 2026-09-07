@@ -163,10 +163,11 @@
     color: var(--color-foreground);
     font-family: var(--font-sans-ui);
     background-image:
-      linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
-      linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
-    background-size: 32px 32px;
+      linear-gradient(45deg, var(--grid-line) 1px, transparent 1px),
+      linear-gradient(-45deg, var(--grid-line) 1px, transparent 1px);
+    background-size: 26px 26px;
   }
+
 }
 
 @utility mono-label {
