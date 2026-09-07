@@ -467,7 +467,7 @@ function Index() {
           how resources changed between the two versions. Runs entirely in your browser; nothing is
           uploaded anywhere.
         </p>
-        <p className="mono-label mt-5 text-muted-foreground">
+        <p className="mt-5 font-mono text-sm tracking-[0.18em] text-muted-foreground">
           all tools are organized by Plaነer
         </p>
       </div>
