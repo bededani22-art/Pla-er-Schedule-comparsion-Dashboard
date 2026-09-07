@@ -12,7 +12,7 @@ export function parseXer(text: string): XerFile {
     const tag = cells[0];
     if (tag === "%T") {
       current = { fields: [], rows: [] };
-      out[cells[1]] = current;
+      out[cells[1] ?? ""] = current;
     } else if (tag === "%F" && current) {
       current.fields = cells.slice(1).map((f) => f.trim());
     } else if (tag === "%R" && current) {
@@ -77,24 +77,24 @@ export type Snapshot = {
 export function buildSnapshot(xer: XerFile): Snapshot {
   const wbsNames = new Map<string, string>();
   for (const r of xer["PROJWBS"]?.rows ?? []) {
-    wbsNames.set(r["wbs_id"], r["wbs_short_name"] || r["wbs_name"] || "—");
+    wbsNames.set(r["wbs_id"] ?? "", r["wbs_short_name"] || r["wbs_name"] || "—");
   }
 
   const rsrcNames = new Map<string, string>();
   for (const r of xer["RSRC"]?.rows ?? []) {
-    rsrcNames.set(r["rsrc_id"], r["rsrc_name"] || r["rsrc_short_name"] || "—");
+    rsrcNames.set(r["rsrc_id"] ?? "", r["rsrc_name"] || r["rsrc_short_name"] || "—");
   }
 
   const activities = new Map<string, Activity>();
   const wbs = new Map<string, { name: string; budget: number; percent: number; count: number }>();
 
   for (const r of xer["TASK"]?.rows ?? []) {
-    const code = r["task_code"] || r["task_id"];
+    const code = r["task_code"] || r["task_id"] || "";
     const start = date(r["act_start_date"]) ?? date(r["early_start_date"]) ?? date(r["target_start_date"]);
     const finish = date(r["act_end_date"]) ?? date(r["early_end_date"]) ?? date(r["target_end_date"]);
-    const wbsName = wbsNames.get(r["wbs_id"]) ?? "—";
+    const wbsName = wbsNames.get(r["wbs_id"] ?? "") ?? "—";
     activities.set(code, {
-      id: r["task_id"],
+      id: r["task_id"] ?? code,
       code,
       name: r["task_name"] || code,
       wbs: wbsName,
@@ -116,7 +116,7 @@ export function buildSnapshot(xer: XerFile): Snapshot {
   activities.forEach((a) => taskCodeById.set(a.id, a.code));
 
   for (const r of xer["TASKRSRC"]?.rows ?? []) {
-    const rName = rsrcNames.get(r["rsrc_id"]) ?? r["rsrc_id"] ?? "—";
+    const rName = rsrcNames.get(r["rsrc_id"] ?? "") ?? r["rsrc_id"] ?? "—";
     const cost = num(r["target_cost"]);
     const qty = num(r["target_qty"]);
     const line = resources.get(rName) ?? { name: rName, cost: 0, qty: 0 };
@@ -124,7 +124,7 @@ export function buildSnapshot(xer: XerFile): Snapshot {
     line.qty += qty;
     resources.set(rName, line);
 
-    const actCode = taskCodeById.get(r["task_id"]) ?? r["task_id"];
+    const actCode = taskCodeById.get(r["task_id"] ?? "") ?? r["task_id"] ?? "";
     assignments.set(`${actCode}|${rName}`, { activity: actCode, resource: rName, qty, cost });
 
     const act = activities.get(actCode);
