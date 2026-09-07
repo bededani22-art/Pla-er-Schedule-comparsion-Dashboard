@@ -456,12 +456,23 @@ function Index() {
 
   return (
     <main className="min-h-screen">
-      <div className="mx-auto max-w-5xl px-4 pt-16 text-center">
-        <p className="mono-label text-accent">Planning Engineer Toolkit</p>
+      <div className="mx-auto max-w-5xl px-4 pt-14 text-center">
+        <div className="mx-auto mb-8 max-w-3xl overflow-hidden rounded-sm border border-border bg-panel p-2">
+          <img
+            src={bedAsset.url}
+            alt="Hand-woven Ethiopian bed frame with cross-stitch lattice patterns, the origin of the Plaነer weave"
+            className="h-48 w-full rounded-sm object-cover grayscale sm:h-64"
+            loading="lazy"
+          />
+          <div className="weave-band-brand mt-2" />
+        </div>
+
+        <p className="mono-label text-maroon">Planning Engineer Toolkit</p>
         <h1 className="mt-3 font-mono text-4xl font-bold tracking-tight sm:text-5xl">
           Schedule Comparison Dashboard
         </h1>
-        <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+        <div className="weave-band mx-auto mt-5 max-w-md opacity-80" />
+        <p className="mx-auto mt-5 max-w-2xl text-sm leading-relaxed text-muted-foreground">
           Upload your original (baseline) and current (updated) Primavera P6 XER files. Get a full
           delta review — what moved, what was added or dropped, how the critical path shifted, and
           how resources changed between the two versions. Runs entirely in your browser; nothing is
@@ -492,10 +503,19 @@ function Index() {
       {comparison ? (
         <Report comparison={comparison} />
       ) : (
-        <p className="mono-label mt-8 pb-24 text-center text-muted-foreground">
+        <p className="mono-label mt-8 pb-16 text-center text-muted-foreground">
           {original || current ? "Waiting for the second file..." : "Waiting for both files..."}
         </p>
       )}
+
+      <footer className="mt-4 border-t border-border bg-primary py-8 text-center text-primary-foreground">
+        <div className="weave-band-brand mx-auto mb-6 max-w-xs opacity-90" />
+        <p className="font-mono text-sm tracking-[0.18em]">all tools are organized by Plaነer</p>
+        <p className="mono-label mt-3 text-primary-foreground/70">
+          © {new Date().getFullYear()} · All rights reserved by Biden
+        </p>
+      </footer>
     </main>
   );
 }
+
