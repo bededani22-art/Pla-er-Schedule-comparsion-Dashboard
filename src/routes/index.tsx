@@ -43,7 +43,7 @@ function DropZone({
   hint: string;
   loaded: Loaded;
   onFile: (file: File) => void;
-  error?: string;
+  error?: string | undefined;
 }) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [over, setOver] = useState(false);
