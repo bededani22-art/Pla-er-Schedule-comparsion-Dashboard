@@ -9,6 +9,8 @@ import {
   type ActivityTag,
   type Comparison,
 } from "@/lib/xer";
+import bedAsset from "@/assets/heritage-bed.webp.asset.json";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
