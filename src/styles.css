@@ -64,7 +64,12 @@
   --color-warning: var(--warning);
   --color-warning-foreground: var(--warning-foreground);
   --color-panel: var(--panel);
+  --color-mustard: var(--mustard);
+  --color-maroon: var(--maroon);
+  --color-straw: var(--straw);
+  --color-ink: var(--ink);
   --color-grid-line: var(--grid-line);
+
   --font-mono: var(--font-mono-ui);
   --font-sans: var(--font-sans-ui);
 }
