@@ -214,7 +214,9 @@ function Report({ comparison }: { comparison: Comparison }) {
 
   return (
     <div className="flex min-h-0 flex-1 gap-4 px-4 pb-4">
-      <nav className="hidden w-56 shrink-0 flex-col gap-1 rounded-sm border border-border bg-primary p-3 text-primary-foreground lg:flex">
+      <nav className="hidden w-56 shrink-0 overflow-hidden rounded-sm border border-border bg-primary text-primary-foreground lg:flex">
+        <div className="weave-rail shrink-0 opacity-90" />
+        <div className="flex min-w-0 flex-1 flex-col gap-1 p-3">
         <p className="mono-label mb-2 px-2 text-primary-foreground/60">Report sections</p>
         {TABS.map((t) => (
           <button
@@ -230,7 +232,9 @@ function Report({ comparison }: { comparison: Comparison }) {
           </button>
         ))}
         <div className="weave-braid mt-auto" />
+        </div>
       </nav>
+
 
       <section className="panel flex min-h-0 min-w-0 flex-1 flex-col p-4">
         <div className="mb-3 flex flex-wrap items-center gap-2 lg:hidden">
