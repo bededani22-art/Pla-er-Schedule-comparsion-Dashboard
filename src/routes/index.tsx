@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   buildSnapshot,
   compareSnapshots,
@@ -9,7 +9,7 @@ import {
   type ActivityTag,
   type Comparison,
 } from "@/lib/xer";
-import { BrandMark } from "@/components/PlanerLogo";
+import { BrandMark, PlanerLogo } from "@/components/PlanerLogo";
 
 export const Route = createFileRoute("/")({
   head: () => ({
