@@ -1,14 +1,18 @@
-# Welcome to your Lovable project
+# PlanIt Easy
+
+clone this website https://schedule-comparison-98.tiiny.site/ fully and only change " Made by Engr. Kashaf" Biden all tools are organized by Plaነer
 
 This project was built with [Lovable](https://lovable.dev).
 
+**Live app**: https://time-organizer-app.lovable.app
+
 ## Build with Lovable
 
-Open your project in the [Lovable editor](https://lovable.dev) and keep building.
+Continue developing this project in the [Lovable editor](https://lovable.dev/projects/2ae4454c-26c7-4547-b16f-c0713a8149a5).
 
 - **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: connect the project to GitHub and every change made in Lovable is committed straight to your repository.
-- **Full ownership**: this code is yours. Push to your repository and your changes sync back into Lovable, ready for your next prompt.
+- **Stay in sync**: every change made in Lovable is committed straight to this repository.
+- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
 
 ## Development
 
@@ -20,10 +24,3 @@ cd <repository-name>
 npm i
 npm run dev
 ```
-
-## Built with
-
-- TanStack Start
-- TypeScript
-- React
-- Tailwind CSS
