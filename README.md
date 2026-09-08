@@ -1,6 +1,5 @@
 # PlanIt Easy
 
-clone this website https://schedule-comparison-98.tiiny.site/ fully and only change " Made by Engr. Kashaf" Biden all tools are organized by Plaነer
 
 This project was built with [Lovable](https://lovable.dev).
 
