@@ -2,6 +2,7 @@
 
 
 This project was built with [Lovable](https://lovable.dev).
+https://pla-ner-schedule-comparsion-dashboard.lovable.app 
 
 **Live app**: https://time-organizer-app.lovable.app
 
