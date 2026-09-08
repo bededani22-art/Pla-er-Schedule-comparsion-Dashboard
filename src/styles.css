@@ -259,3 +259,30 @@
   overflow-x: auto;
   scrollbar-gutter: stable;
 }
+
+/* vertical woven strip for the fixed sidebar */
+@utility weave-rail {
+  width: 12px;
+  background-image:
+    linear-gradient(135deg, var(--mustard) 25%, transparent 25%),
+    linear-gradient(225deg, var(--mustard) 25%, transparent 25%),
+    linear-gradient(315deg, var(--maroon) 25%, transparent 25%),
+    linear-gradient(45deg, var(--maroon) 25%, transparent 25%);
+  background-size: 12px 12px;
+  background-position: 0 0, 0 0, 0 6px, 0 6px;
+  background-repeat: repeat-y;
+}
+
+@keyframes weave-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@utility spin-medallion {
+  animation: weave-spin 2.4s linear infinite;
+}
+
