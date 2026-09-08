@@ -43,7 +43,7 @@ export function BrandMark() {
       <PlanerLogo />
       <div className="leading-none">
         <p className="font-mono text-xl font-bold tracking-tight">Plaነer</p>
-        <p className="mono-label mt-1 text-[0.6rem] text-muted-foreground">Heritage Weave</p>
+        <p className="mono-label mt-1 text-[0.6rem] text-muted-foreground">B-ዕድ</p>
       </div>
     </div>
   );

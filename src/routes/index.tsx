@@ -605,7 +605,7 @@ function Index() {
       <footer className="shrink-0 border-t border-border bg-primary px-4 py-3 text-center text-primary-foreground">
         <p className="font-mono text-xs tracking-[0.18em]">all tools are organized by Plaነer</p>
         <p className="mono-label mt-1 text-primary-foreground/70">
-          © {new Date().getFullYear()} · All rights reserved by Biden
+          © {new Date().getFullYear()} · All rights reserved by B-ዕድ
         </p>
       </footer>
     </main>
