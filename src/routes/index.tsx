@@ -519,11 +519,14 @@ function Index() {
   );
 
   useEffect(() => {
-    if (!comparison || phase !== "upload") return;
-    setPhase("processing");
+    if (comparison && phase === "upload") setPhase("processing");
+  }, [comparison, phase]);
+
+  useEffect(() => {
+    if (phase !== "processing") return;
     const timer = setTimeout(() => setPhase("dashboard"), 1800);
     return () => clearTimeout(timer);
-  }, [comparison, phase]);
+  }, [phase]);
 
   const reset = () => {
     setOriginal(null);
