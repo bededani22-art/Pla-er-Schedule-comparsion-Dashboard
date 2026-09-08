@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   buildSnapshot,
   compareSnapshots,
@@ -9,7 +9,7 @@ import {
   type ActivityTag,
   type Comparison,
 } from "@/lib/xer";
-import { BrandMark } from "@/components/PlanerLogo";
+import { BrandMark, PlanerLogo } from "@/components/PlanerLogo";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -214,7 +214,9 @@ function Report({ comparison }: { comparison: Comparison }) {
 
   return (
     <div className="flex min-h-0 flex-1 gap-4 px-4 pb-4">
-      <nav className="hidden w-56 shrink-0 flex-col gap-1 rounded-sm border border-border bg-primary p-3 text-primary-foreground lg:flex">
+      <nav className="hidden w-56 shrink-0 overflow-hidden rounded-sm border border-border bg-primary text-primary-foreground lg:flex">
+        <div className="weave-rail shrink-0 opacity-90" />
+        <div className="flex min-w-0 flex-1 flex-col gap-1 p-3">
         <p className="mono-label mb-2 px-2 text-primary-foreground/60">Report sections</p>
         {TABS.map((t) => (
           <button
@@ -230,7 +232,9 @@ function Report({ comparison }: { comparison: Comparison }) {
           </button>
         ))}
         <div className="weave-braid mt-auto" />
+        </div>
       </nav>
+
 
       <section className="panel flex min-h-0 min-w-0 flex-1 flex-col p-4">
         <div className="mb-3 flex flex-wrap items-center gap-2 lg:hidden">
@@ -491,6 +495,7 @@ function Index() {
   const [original, setOriginal] = useState<Loaded>(null);
   const [current, setCurrent] = useState<Loaded>(null);
   const [errors, setErrors] = useState<{ original?: string; current?: string }>({});
+  const [phase, setPhase] = useState<"upload" | "processing" | "dashboard">("upload");
 
   const load = async (file: File, slot: "original" | "current") => {
     try {
@@ -513,6 +518,20 @@ function Index() {
     [original, current],
   );
 
+  useEffect(() => {
+    if (!comparison || phase !== "upload") return;
+    setPhase("processing");
+    const timer = setTimeout(() => setPhase("dashboard"), 1800);
+    return () => clearTimeout(timer);
+  }, [comparison, phase]);
+
+  const reset = () => {
+    setOriginal(null);
+    setCurrent(null);
+    setErrors({});
+    setPhase("upload");
+  };
+
   return (
     <main className="flex h-screen flex-col overflow-hidden">
       <header className="shrink-0 border-b border-border bg-panel">
@@ -523,43 +542,62 @@ function Index() {
               Schedule Comparison Dashboard
             </h1>
           </div>
-          <BrandMark />
+          <div className="flex items-center gap-4">
+            {phase === "dashboard" ? (
+              <button
+                onClick={reset}
+                className="mono-label rounded-sm border border-border px-3 py-2 text-muted-foreground transition-colors hover:border-accent hover:text-accent"
+              >
+                New comparison
+              </button>
+            ) : null}
+            <BrandMark />
+          </div>
         </div>
         <div className="weave-truss opacity-80" />
       </header>
 
-      <div className="shrink-0 px-4 pt-6 pb-4">
-        <div className="grid gap-6 sm:grid-cols-2">
-          <DropZone
-            label="Original / Baseline"
-            hint="Drop original .XER here"
-            loaded={original}
-            error={errors.original}
-            onFile={(f) => load(f, "original")}
-          />
-          <DropZone
-            label="Current / Updated"
-            hint="Drop updated .XER here"
-            loaded={current}
-            error={errors.current}
-            onFile={(f) => load(f, "current")}
-          />
+      {phase === "upload" ? (
+        <div className="flex min-h-0 flex-1 flex-col justify-center px-4 py-6">
+          <div className="grid gap-6 sm:grid-cols-2">
+            <DropZone
+              label="Original / Baseline"
+              hint="Drop original .XER here"
+              loaded={original}
+              error={errors.original}
+              onFile={(f) => load(f, "original")}
+            />
+            <DropZone
+              label="Current / Updated"
+              hint="Drop updated .XER here"
+              loaded={current}
+              error={errors.current}
+              onFile={(f) => load(f, "current")}
+            />
+          </div>
+          <div className="mt-8 flex flex-col items-center text-center">
+            <div className="weave-braid w-64 opacity-80" />
+            <p className="mono-label mt-4 text-muted-foreground">
+              {original || current ? "Waiting for the second file..." : "Waiting for both files..."}
+            </p>
+            <p className="mt-3 max-w-xl text-sm text-muted-foreground">
+              Everything runs in your browser — no file ever leaves this device.
+            </p>
+          </div>
         </div>
-      </div>
+      ) : null}
 
-      {comparison ? (
-        <Report comparison={comparison} />
-      ) : (
+      {phase === "processing" ? (
         <div className="flex min-h-0 flex-1 flex-col items-center justify-center px-4 text-center">
-          <div className="weave-braid w-64 opacity-80" />
-          <p className="mono-label mt-4 text-muted-foreground">
-            {original || current ? "Waiting for the second file..." : "Waiting for both files..."}
-          </p>
-          <p className="mt-3 max-w-xl text-sm text-muted-foreground">
-            Everything runs in your browser — no file ever leaves this device.
-          </p>
+          <div className="spin-medallion">
+            <PlanerLogo size={104} />
+          </div>
+          <p className="mono-label mt-8 text-foreground">Analyzing Schedules...</p>
+          <div className="weave-chevron mt-4 w-72 opacity-70" />
         </div>
-      )}
+      ) : null}
+
+      {phase === "dashboard" && comparison ? <Report comparison={comparison} /> : null}
 
       <footer className="shrink-0 border-t border-border bg-primary px-4 py-3 text-center text-primary-foreground">
         <p className="font-mono text-xs tracking-[0.18em]">all tools are organized by Plaነer</p>
@@ -570,3 +608,4 @@ function Index() {
     </main>
   );
 }
+
