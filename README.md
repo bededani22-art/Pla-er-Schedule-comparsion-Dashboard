@@ -1,14 +1,10 @@
-# PlanIt Easy
 
-
-This project was built with [Lovable](https://lovable.dev).
 https://pla-ner-schedule-comparsion-dashboard.lovable.app 
 
 **Live app**: (https://pla-ner-schedule-comparsion-dashboard.lovable.app)
 
-## Build with Lovable
 
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/2ae4454c-26c7-4547-b16f-c0713a8149a5).
+Continue developing this project in the (https://lovable.dev/projects/2ae4454c-26c7-4547-b16f-c0713a8149a5).
 
 - **Ship faster**: describe what you want to build and Lovable handles the code.
 - **Stay in sync**: every change made in Lovable is committed straight to this repository.
